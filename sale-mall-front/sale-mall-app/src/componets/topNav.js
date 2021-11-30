@@ -28,13 +28,13 @@ export default function TopNav(props) {
             <div className="bottom-nav">
                 <div className="width-restrictor">
                     <ul className="nav-list">
-                        <li className="on">
+                        <li className={props.tableId === 1 ? "on" : ""}>
                             特价秒杀
                         </li>
-                        <li>
+                        <li className={props.tableId === 2 ? "on" : ""}>
                             品牌秒杀
                         </li>
-                        <li>
+                        <li className={props.tableId === 3 ? "on" : ""}>
                             品牌秒杀
                         </li>
                     </ul>

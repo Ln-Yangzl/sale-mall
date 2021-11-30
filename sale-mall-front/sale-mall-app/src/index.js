@@ -3,16 +3,19 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Routes, Route} from 'react-router-dom';
 
 import SalePage from './pages/salePage';
+import DetailPage from './pages/detailPage';
 
-import './base.css'
-import './common.css'
+import './css/base.css'
+import './css/common.css'
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
 
-        <Route path='/' element={<SalePage/>} />
+        <Route path='/' element={<SalePage />} />
+        
+        <Route path='/detail' element={<DetailPage/>} />
 
       </Routes>
     </BrowserRouter>

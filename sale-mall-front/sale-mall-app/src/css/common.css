@@ -25,6 +25,17 @@
     background-color: #f6f6f6;
 }
 
+.btn-red{
+    height: 5rem;
+    padding: 0 2.6rem;
+    line-height: 5rem;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #fff;
+    background-color: #df3033;
+    text-align: center;
+}
+
 /*---------------------------------
             header
 ----------------------------------*/
