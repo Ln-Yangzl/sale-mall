@@ -16,11 +16,9 @@ export default function SideBar(props) {
 
                 <ul className="nav nav-pills nav-stacked custom-nav">
 
-                    <li><Link to="/"> <span>商品列表</span></Link></li>
-                    <li><Link to="/"> <span>发件箱</span></Link></li>
-                    <li><Link to="/"> <span>草稿箱</span></Link></li>
-                    <li><Link to="/"> <span>通讯录</span></Link></li>
-
+                    <li><Link to="/goodsList"> <span>商品列表</span></Link></li>
+                    <li><Link to="/goodsAdd"> <span>添加商品</span></Link></li>
+                    
                 </ul>
 
             </div>

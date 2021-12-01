@@ -210,7 +210,7 @@
 .content-box{
     margin: 10px auto;
     width: 98%;
-    height: 95%;
+    padding-bottom: 20px;
     background-color: #fff;
     border-radius: 5px;
 }
@@ -221,4 +221,197 @@
     font-size: 20px;
     font-weight: bold;
     border-bottom: 1px dotted rgba(0, 0, 0, 0.2);
+}
+
+/*-----------------------------
+        table styles
+------------------------------*/
+
+.table-restrictor{
+    padding: 0 25px;
+    max-height: 80vh;
+    overflow-y: scroll;
+}
+
+.table{
+    width: 100%;
+    margin-bottom: 20px;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.table>caption+thead>tr:first-child>th, 
+.table>colgroup+thead>tr:first-child>th, 
+.table>thead:first-child>tr:first-child>th, 
+.table>caption+thead>tr:first-child>td, 
+.table>colgroup+thead>tr:first-child>td, 
+.table>thead:first-child>tr:first-child>td {
+    border-top: 0;
+}
+
+.table thead > tr > th, 
+.table tbody > tr > th, 
+.table tfoot > tr > th, 
+.table thead > tr > td, 
+.table tbody > tr > td, 
+.table tfoot > tr > td {
+    padding: 10px;
+}
+
+.table>thead>tr>th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #ddd;
+}
+
+.table>thead>tr>th, 
+.table>tbody>tr>th, 
+.table>tfoot>tr>th, 
+.table>thead>tr>td, 
+.table>tbody>tr>td, 
+.table>tfoot>tr>td {
+    border-top: 1px solid #ddd;
+}
+
+.table img{
+    width: 80px;
+    height: 80px;
+    overflow: hidden;
+}
+
+/*-----------------------------
+        btn styles
+------------------------------*/
+
+.btn {
+    display: inline-block;
+    margin: 0 5px;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.btn-default {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+
+.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
+    color: #333;
+    background-color: #ebebeb;
+    border-color: #adadad;
+}
+
+.btn-info {
+    color: #fff;
+    background-color: #5bc0de;
+    border-color: #46b8da;
+}
+.btn-info:hover, .btn-info:focus, .btn-info:active, .btn-info.active, .open .dropdown-toggle.btn-info {
+    color: #fff;
+    background-color: #39b3d7;
+    border-color: #269abc;
+}
+
+.btn-danger {
+    color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+}
+
+.btn-danger:hover, .btn-danger:focus, .btn-danger:active, .btn-danger.active, .open .dropdown-toggle.btn-danger {
+    color: #fff;
+    background-color: #d2322d;
+    border-color: #ac2925;
+}
+
+/*-----------------------------
+        form styles
+------------------------------*/
+
+.form-restrictor{
+    width: 800px;
+    padding: 35px;
+    margin: 20px auto;
+    border: 1px solid #ebeef5;
+}
+
+.el-form{
+    width: 600px;
+    margin: 0 auto;
+}
+
+.el-form .item{
+    position: relative;
+    margin-bottom: 18px;
+    color: #606266;
+}
+
+.el-form .item .item-label{
+    height: 32px;
+    line-height: 32px;
+    padding-right: 12px;
+    font-size: 14px;
+    text-align: right;
+}
+
+.el-form .item .is-required::before{
+    content: "*";
+    color: #f56c6c;
+    margin-right: 4px;
+}
+
+.el-form .item .item-input{
+    width: 480px;
+    height: 32px;
+    line-height: 32px;
+    border-radius: 4px;
+    border: 1px solid #dcdfe6;
+    padding: 0 15px;
+    transition: all .2s cubic-bezier(.645,.045,.355,1);
+}
+
+.el-form .item .item-input:hover{
+    border-color: #c0c4cc;
+}
+
+.el-form .item .item-input:focus{
+    border-color: #409eff;
+    outline: 0;
+}
+
+.el-form .item :is(.is-success, .is-success:hover, .is-success:focus){
+    border-color: #67c23a;
+}
+
+.el-form .item :is(.is-error, .is-error:hover, .is-error:focus){
+    border-color: #f56c6c;
+}
+
+.el-form .item .error-msg{
+    position: absolute;
+    top: 100%;
+    left: 82px;
+    padding-top: 2px;
+    color: #f56c6c;
+    font-size: 12px;
+    line-height: 1;
+}
+
+.el-form .form-controller{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 40px;
 }
