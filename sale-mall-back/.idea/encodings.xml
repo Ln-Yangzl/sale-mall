@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" native2AsciiForPropertiesFiles="true" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$/cloud-common-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cloud-common-api/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cloud-query-order9003/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cloud-query-order9003/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cloud-query-product9002/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cloud-query-product9002/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cloud-query-seckill9004/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cloud-query-seckill9004/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cloud-query-user9001/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cloud-query-user9001/src/main/resources" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>

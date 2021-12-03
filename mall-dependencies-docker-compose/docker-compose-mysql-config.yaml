@@ -1,0 +1,24 @@
+version: "3"
+services:
+  mysql-config:
+      container_name: mysql-config
+      image: nacos/nacos-mysql:5.7
+      env_file:
+        - ./env/mysql.env
+      volumes:
+        - ./mysql-config-databases:/var/lib/mysql
+      ports:
+        - "3307:3306"
+      networks: 
+        mall_net:
+          ipv4_address: 172.18.0.2
+      restart: on-failure
+      volumes:
+        - ./mysql-conf/mysql.conf.d/mysqld.cnf:/etc/mysql/mysql.conf.d/mysqld.cnf
+
+networks:
+  mall_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.18.0.0/16

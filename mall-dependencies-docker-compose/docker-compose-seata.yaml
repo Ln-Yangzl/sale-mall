@@ -1,0 +1,26 @@
+version: '3'
+services:
+  seata-server:
+    container_name: "seata-server"
+    image: seataio/seata-server:${SEATA_VERSION}
+    environment:
+     - SEATA_CONFIG_NAME=file:/root/seata-config/registry
+     - SEATA_IP=192.168.31.145
+    restart: on-failure
+    volumes:
+      - ./seata/config:/root/seata-config
+      # - ./seata/file.conf:/seata-server/resources/file.conf
+      # - ./seata/registry.conf:/seata-server/resources/registry.conf
+      - ./seata/logs:/root/logs/seata
+    ports:
+      - "8091:8091"
+    networks: 
+        mall_net:
+          ipv4_address: 172.18.0.6
+
+networks:
+  mall_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.18.0.0/16

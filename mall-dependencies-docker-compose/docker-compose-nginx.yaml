@@ -1,0 +1,23 @@
+version: "3" 
+services:
+  mall-nginx-nacos:
+    image: nginx
+    container_name: mall-nginx-nacos
+    ports:
+      - "6448:8848"
+      - "7448:9848"
+    restart: on-failure
+    networks: 
+      mall_net:
+        ipv4_address: 172.18.0.7
+    volumes:
+      - ./nginx/www:/usr/share/nginx/html
+      - ./nginx/conf/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/logs:/var/log/nginx
+
+networks:
+  mall_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.18.0.0/16
