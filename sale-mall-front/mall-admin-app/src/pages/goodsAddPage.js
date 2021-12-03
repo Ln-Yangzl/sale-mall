@@ -42,7 +42,7 @@ export default function GoodsAdd(props) {
                             <div className='error-msg'></div>
                         </div>
                         <div className='item'>
-                            <label className='item-label is-required' for='endTime'>商品图片：</label>
+                            <label className='item-label is-required' for='pic'>商品图片：</label>
                             <input type='file'></input>
                             <div className='error-msg'></div>
                         </div>
