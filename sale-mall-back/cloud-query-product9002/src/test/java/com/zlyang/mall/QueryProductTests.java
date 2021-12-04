@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,5 +29,16 @@ public class QueryProductTests {
         list.add(3);
         List<Product> productsInIds = productService.getProductsInIds(list);
         productsInIds.forEach(System.out::println);
+    }
+
+    @Test
+    void saveFileTransactionTest(){
+        Product product = new Product();
+        product.setTitle("testTransaction");
+        try {
+            productService.createProduct(product, null);
+        } catch (IOException | NullPointerException e) {
+            e.printStackTrace();
+        }
     }
 }

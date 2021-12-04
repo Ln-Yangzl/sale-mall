@@ -4,9 +4,14 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.zlyang.mall.entities.Product;
 import com.zlyang.mall.mapper.ProductMapper;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -16,6 +21,10 @@ import java.util.List;
  */
 @Service
 public class ProductService {
+
+    @Value("${file-path}")
+    private String FILE_PATH;
+
     @Resource
     private ProductMapper productMapper;
 
@@ -23,8 +32,15 @@ public class ProductService {
         return productMapper.selectById(id);
     }
 
-    public int createProduct(Product product){
-        return productMapper.insert(product);
+    @Transactional(rollbackFor = Exception.class)
+    public int createProduct(Product product, MultipartFile pic) throws IOException {
+//        System.out.println(FILE_PATH);
+        int insertStatus = productMapper.insert(product);
+        String fileName = product.getProductId().toString() + pic.getOriginalFilename();
+        File dest = new File(FILE_PATH + fileName);
+//        System.out.println(dest);
+        pic.transferTo(dest);
+        return insertStatus;
     }
 
     public List<Product> getProductsInIds(List<Integer> ids){

@@ -5,8 +5,10 @@ import com.zlyang.mall.entities.Product;
 import com.zlyang.mall.entities.ResultMsgEnum;
 import com.zlyang.mall.service.ProductService;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -27,8 +29,13 @@ public class ProductController {
     }
 
     @PostMapping("/product/create")
-    public CommonResult createProduct(@RequestBody Product product){
-        int status = productService.createProduct(product);
+    public CommonResult createProduct(@RequestBody Product product, @RequestBody MultipartFile pic){
+        int status = 0;
+        try {
+            status = productService.createProduct(product, pic);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         if(status > 0){
             return CommonResult.success(null);
         } else {

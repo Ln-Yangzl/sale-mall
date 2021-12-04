@@ -99,7 +99,7 @@ export default function GoodsList(props) {
                                 return (
                                     <tr key={index}>
                                         <th>{value.productId}</th>
-                                        <th><img src={value.pic} alt='' /></th>
+                                        <th><img src={React.$getStaticUrl(value.pic)} alt='' /></th>
                                         <th>{value.title}</th>
                                         <th>{value.inventory}</th>
                                         <th>

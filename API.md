@@ -2,9 +2,9 @@
 
 ## 前后端接口
 
-### 查询服务:/goods
+### 查询服务:
 
-#### /list
+#### /seckill/getAll
 
 ```json
 [

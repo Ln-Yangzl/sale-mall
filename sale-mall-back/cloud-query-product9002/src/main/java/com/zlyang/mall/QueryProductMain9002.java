@@ -3,6 +3,7 @@ package com.zlyang.mall;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * @author: zlyang
@@ -11,6 +12,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  */
 @EnableDiscoveryClient
 @SpringBootApplication
+@EnableTransactionManagement
 public class QueryProductMain9002 {
     public static void main(String[] args) {
         SpringApplication.run(QueryProductMain9002.class, args);
