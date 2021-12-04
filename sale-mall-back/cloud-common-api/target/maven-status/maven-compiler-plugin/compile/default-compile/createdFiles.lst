@@ -1,6 +1,7 @@
 com\zlyang\mall\entities\SeckillOrder.class
+com\zlyang\mall\entities\CommonResult.class
+com\zlyang\mall\entities\User.class
 com\zlyang\mall\entities\Product.class
 com\zlyang\mall\entities\ResultMsgEnum.class
-com\zlyang\mall\entities\CommonResult.class
 com\zlyang\mall\entities\Seckill.class
-com\zlyang\mall\entities\User.class
+com\zlyang\mall\entities\SeckillProductDetail.class

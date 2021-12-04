@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.io.Serializable;
 
@@ -16,6 +17,7 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class Seckill implements Serializable {
     @TableId(type = IdType.AUTO)
     private Integer seckillId;

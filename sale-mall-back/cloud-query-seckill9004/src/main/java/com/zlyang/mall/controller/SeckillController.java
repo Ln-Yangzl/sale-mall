@@ -3,10 +3,12 @@ package com.zlyang.mall.controller;
 import com.zlyang.mall.entities.CommonResult;
 import com.zlyang.mall.entities.ResultMsgEnum;
 import com.zlyang.mall.entities.Seckill;
+import com.zlyang.mall.entities.SeckillProductDetail;
 import com.zlyang.mall.service.SeckillService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author: zlyang
@@ -33,5 +35,11 @@ public class SeckillController {
         } else {
             return CommonResult.error(ResultMsgEnum.DATABASE_OPERATION_FAILED);
         }
+    }
+
+    @GetMapping("/seckill/getAll")
+    public CommonResult getAll(){
+        List<SeckillProductDetail> allSeckillsDetail = seckillService.getAllSeckillsDetail();
+        return CommonResult.success(allSeckillsDetail);
     }
 }

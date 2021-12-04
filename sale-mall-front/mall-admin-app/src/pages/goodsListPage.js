@@ -1,65 +1,82 @@
-
+import axios from 'axios'
+import React from 'react';
 
 import SideBar from "../components/sideBar";
 
 export default function GoodsList(props) {
 
-    let data = [
-        {
-            productId: '1',
-            pic: './upload/goods-img-1.jpg',
-            title: '潘婷氨基酸乳液修洗护套装',
-            inventory: '100'
-        },
-        {
-            productId: '1',
-            pic: './upload/goods-img-1.jpg',
-            title: '潘婷氨基酸乳液修洗护套装',
-            inventory: '100'
-        },
-        {
-            productId: '1',
-            pic: './upload/goods-img-1.jpg',
-            title: '潘婷氨基酸乳液修洗护套装',
-            inventory: '100'
-        },
-        {
-            productId: '1',
-            pic: './upload/goods-img-1.jpg',
-            title: '潘婷氨基酸乳液修洗护套装',
-            inventory: '100'
-        },
-        {
-            productId: '1',
-            pic: './upload/goods-img-1.jpg',
-            title: '潘婷氨基酸乳液修洗护套装',
-            inventory: '100'
-        },
-        {
-            productId: '1',
-            pic: './upload/goods-img-1.jpg',
-            title: '潘婷氨基酸乳液修洗护套装',
-            inventory: '100'
-        },
-        {
-            productId: '1',
-            pic: './upload/goods-img-1.jpg',
-            title: '潘婷氨基酸乳液修洗护套装',
-            inventory: '100'
-        },
-        {
-            productId: '1',
-            pic: './upload/goods-img-1.jpg',
-            title: '潘婷氨基酸乳液修洗护套装',
-            inventory: '100'
-        },
-        {
-            productId: '1',
-            pic: './upload/goods-img-1.jpg',
-            title: '潘婷氨基酸乳液修洗护套装',
-            inventory: '100'
-        },
-    ]
+    // let data = [
+    //     {
+    //         productId: '1',
+    //         pic: './upload/goods-img-1.jpg',
+    //         title: '潘婷氨基酸乳液修洗护套装',
+    //         inventory: '100'
+    //     },
+    //     {
+    //         productId: '1',
+    //         pic: './upload/goods-img-1.jpg',
+    //         title: '潘婷氨基酸乳液修洗护套装',
+    //         inventory: '100'
+    //     },
+    //     {
+    //         productId: '1',
+    //         pic: './upload/goods-img-1.jpg',
+    //         title: '潘婷氨基酸乳液修洗护套装',
+    //         inventory: '100'
+    //     },
+    //     {
+    //         productId: '1',
+    //         pic: './upload/goods-img-1.jpg',
+    //         title: '潘婷氨基酸乳液修洗护套装',
+    //         inventory: '100'
+    //     },
+    //     {
+    //         productId: '1',
+    //         pic: './upload/goods-img-1.jpg',
+    //         title: '潘婷氨基酸乳液修洗护套装',
+    //         inventory: '100'
+    //     },
+    //     {
+    //         productId: '1',
+    //         pic: './upload/goods-img-1.jpg',
+    //         title: '潘婷氨基酸乳液修洗护套装',
+    //         inventory: '100'
+    //     },
+    //     {
+    //         productId: '1',
+    //         pic: './upload/goods-img-1.jpg',
+    //         title: '潘婷氨基酸乳液修洗护套装',
+    //         inventory: '100'
+    //     },
+    //     {
+    //         productId: '1',
+    //         pic: './upload/goods-img-1.jpg',
+    //         title: '潘婷氨基酸乳液修洗护套装',
+    //         inventory: '100'
+    //     },
+    //     {
+    //         productId: '1',
+    //         pic: './upload/goods-img-1.jpg',
+    //         title: '潘婷氨基酸乳液修洗护套装',
+    //         inventory: '100'
+    //     },
+    // ]
+
+    const [data, setData] = React.useState([])
+
+    React.useEffect(() => {
+        let url = React.$getBackendUrl('/seckill/getAll');
+        axios.get(url).then((response) => {
+            let responseBody = response.data;
+            if (responseBody.code === 0) {
+                setData(responseBody.data)
+            } else {
+                React.$logCommonError(responseBody);
+            }
+        }).catch((response) => {
+            React.$logRuntimeError(response)
+        })
+    }, [])
 
     return (
         <div className='main-content'>

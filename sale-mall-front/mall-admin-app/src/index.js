@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route, Navigate} from 'react-router-dom';
 import GoodsList from './pages/goodsListPage';
 import GoodsAdd from './pages/goodsAddPage';
 
+import './utils/tools'
 import './css/base.css'
 import './css/common.css'
 

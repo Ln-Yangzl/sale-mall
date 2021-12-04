@@ -7,6 +7,7 @@ import com.zlyang.mall.service.ProductService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author: zlyang
@@ -33,5 +34,11 @@ public class ProductController {
         } else {
             return CommonResult.error(ResultMsgEnum.DATABASE_OPERATION_FAILED);
         }
+    }
+
+    @PostMapping("/product/selectInIds")
+    public CommonResult selectInIds(@RequestBody List<Integer> ids){
+        List<Product> products = productService.getProductsInIds(ids);
+        return CommonResult.success(products);
     }
 }
