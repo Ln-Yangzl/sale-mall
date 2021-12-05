@@ -7,6 +7,8 @@ import com.zlyang.mall.entities.Product;
 import com.zlyang.mall.entities.Seckill;
 import com.zlyang.mall.entities.SeckillProductDetail;
 import com.zlyang.mall.mapper.SeckillMapper;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -28,18 +30,22 @@ public class SeckillService {
     @Resource
     private ProductFeignService productFeignService;
 
+    @Cacheable(value = "short-cache", key = "'getSeckillById'+#id")
     public Seckill getSeckillById(Integer id){
         return seckillMapper.selectById(id);
     }
 
+    @CacheEvict(value = "long-cache", key = "'getAllSeckillsDetail'")
     public int createSeckill(Seckill seckill){
         return seckillMapper.insert(seckill);
     }
 
+    @CacheEvict(value = "long-cache", key = "'getAllSeckillsDetail'")
     public int deleteSeckillById(Integer seckillId){
         return seckillMapper.deleteById(seckillId);
     }
 
+    @Cacheable(value = "long-cache", key = "'getAllSeckillsDetail'", unless = "#result == null")
     public List<SeckillProductDetail> getAllSeckillsDetail(){
         List<Seckill> seckills = seckillMapper.selectList(null);
         CommonResult<List<LinkedHashMap>> commonResult = productFeignService.selectInIds(
