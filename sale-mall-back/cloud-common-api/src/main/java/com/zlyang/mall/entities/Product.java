@@ -26,4 +26,13 @@ public class Product implements Serializable {
     private Integer price;
     private String disc;
     private String pic;
+
+    public Product(SeckillProductDetail seckillProductDetail){
+        productId = seckillProductDetail.getProductId();
+        title = seckillProductDetail.getTitle();
+        inventory = seckillProductDetail.getInventory();
+        price = seckillProductDetail.getPrice();
+        disc = seckillProductDetail.getDisc();
+        pic = seckillProductDetail.getPic();
+    }
 }

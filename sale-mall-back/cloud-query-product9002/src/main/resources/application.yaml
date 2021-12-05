@@ -18,7 +18,9 @@ spring:
       max-file-size: 1MB
 
 # 文件保存路径：应当为nginx对应静态资源路径
-file-path: D:\coding\sale-mall\mall-dependencies-docker-compose\nginx-server\www\upload
+file-path: D:\coding\sale-mall\mall-dependencies-docker-compose\nginx-server\www\upload\
+# 图片保存头，为对应file-path中www下的路径
+pic-pref: /upload/
 
 management:
   endpoints:

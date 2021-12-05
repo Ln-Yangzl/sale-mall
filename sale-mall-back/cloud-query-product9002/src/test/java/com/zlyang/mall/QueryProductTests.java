@@ -36,8 +36,8 @@ public class QueryProductTests {
         Product product = new Product();
         product.setTitle("testTransaction");
         try {
-            productService.createProduct(product, null);
-        } catch (IOException | NullPointerException e) {
+            productService.createProduct(product);
+        } catch (NullPointerException e) {
             e.printStackTrace();
         }
     }

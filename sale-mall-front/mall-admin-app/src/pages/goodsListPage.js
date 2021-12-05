@@ -90,6 +90,7 @@ export default function GoodsList(props) {
                                 <th>编号</th>
                                 <th>图片</th>
                                 <th>商品名称</th>
+                                <th>价格</th>
                                 <th>库存</th>
                                 <th>操作</th>
                             </tr>
@@ -101,6 +102,7 @@ export default function GoodsList(props) {
                                         <th>{value.productId}</th>
                                         <th><img src={React.$getStaticUrl(value.pic)} alt='' /></th>
                                         <th>{value.title}</th>
+                                        <th>{value.price}</th>
                                         <th>{value.inventory}</th>
                                         <th>
                                             <button className='btn btn-danger'>删除</button>

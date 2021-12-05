@@ -12,7 +12,7 @@ export default function GoodsAdd(props) {
         inventory: '',
         startTime: '',
         endTime: '',
-        pic: null,
+        picFile: null,
     })
 
     const [errorMsg, setErrorMsg] = React.useState({
@@ -31,9 +31,9 @@ export default function GoodsAdd(props) {
     };
 
     const handleFileChange = () => {
-        let file = document.querySelector('#input-pic').files[0];
+        let file = document.querySelector('#input-picFile').files[0];
         console.log(file);
-        setProduct({ ...product, pic: file });
+        setProduct({ ...product, picFile: file });
     }
 
     const handleReset = () => {
@@ -44,25 +44,41 @@ export default function GoodsAdd(props) {
             inventory: '',
             startTime: '',
             endTime: '',
-            pic: null,
+            picFile: null,
         })
     }
 
     const handleCommit = () => {
-        let url = React.$getBackendUrl('/product/create');
+        let url = React.$getBackendUrl('/product/createProductAndSeckill');
         let uploadData = {
-            product: {
-                title: product.title,
-                disc: product.disc,
-                price: product.price,
-                inventory: product.inventory,
-                startTime: product.startTime,
-                endTime: product.endTime,
-            },
-            pic: product.pic,
+            title: product.title,
+            disc: product.disc,
+            price: product.price,
+            pic: product.picFile.name,
+            inventory: product.inventory,
+            startTime: product.startTime,
+            endTime: product.endTime,
         }
         console.log(uploadData);
         axios.post(url, uploadData).then((response) => {
+            let responseBody = response.data;
+            if (responseBody.code !== 0) {
+                setErrorMsg({
+                    ...errorMsg,
+                    picErrorMsg: responseBody.message,
+                })
+            } else {
+                React.$logCommonError(responseBody);
+            }
+        }).catch((response) => {
+            React.$logRuntimeError(response)
+        })
+        let urlPic = React.$getBackendUrl("/product/savePic");
+        let file = product.picFile;
+        console.log(file)
+        let param = new FormData();
+        param.append("picFile", file);
+        axios.post(urlPic, param).then((response) => {
             let responseBody = response.data;
             if (responseBody.code !== 0) {
                 setErrorMsg({
@@ -115,8 +131,8 @@ export default function GoodsAdd(props) {
                             <div className='error-msg'>{errorMsg.endTimeErrorMsg}</div>
                         </div>
                         <div className='item'>
-                            <label className='item-label is-required' for='pic'>商品图片：</label>
-                            <input type='file' id='input-pic' onChange={() => handleFileChange()}></input>
+                            <label className='item-label is-required' for='picFile'>商品图片：</label>
+                            <input type='file' id='input-picFile' onChange={() => handleFileChange()}></input>
                             <div className='error-msg'>{errorMsg.picErrorMsg}</div>
                         </div>
                         <div className='form-controller'>

@@ -25,11 +25,12 @@ public class SeckillProductDetail implements Serializable {
     private String title;
     private String disc;
     private String pic;
-    private Integer seckillInventory;
+    private Integer inventory;
+    private Integer price;
     private String startTime;
     private String endTime;
 
-    SeckillProductDetail(Product product, Seckill seckill){
+     public SeckillProductDetail(Product product, Seckill seckill){
         if(!product.getProductId().equals(seckill.getProductId())){
             throw new IllegalArgumentException("product and seckill id not equal! get:"
                     + product.toString() + "\n"
@@ -40,7 +41,8 @@ public class SeckillProductDetail implements Serializable {
         title = product.getTitle();
         disc = product.getDisc();
         pic = product.getPic();
-        seckillInventory = seckill.getSeckillInventory();
+        price = product.getPrice();
+        inventory = seckill.getSeckillInventory();
         startTime = seckill.getStartTime();
         endTime = seckill.getEndTime();
     }

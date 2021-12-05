@@ -25,4 +25,12 @@ public class Seckill implements Serializable {
     private Integer seckillInventory;
     private String startTime;
     private String endTime;
+
+    public Seckill(SeckillProductDetail seckillProductDetail){
+        seckillId = seckillProductDetail.getSeckillId();
+        productId = seckillProductDetail.getProductId();
+        seckillInventory = seckillProductDetail.getInventory();
+        startTime = seckillProductDetail.getStartTime();
+        endTime = seckillProductDetail.getEndTime();
+    }
 }
