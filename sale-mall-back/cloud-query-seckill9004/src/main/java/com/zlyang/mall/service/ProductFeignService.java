@@ -1,10 +1,13 @@
 package com.zlyang.mall.service;
 
 import com.zlyang.mall.entities.CommonResult;
+import com.zlyang.mall.entities.Product;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -23,5 +26,14 @@ public interface ProductFeignService {
      * @return
      */
     @PostMapping("/product/selectInIds")
-    public CommonResult selectInIds(@RequestBody List<Integer> ids);
+    public CommonResult<List<Product>> selectInIds(@RequestBody List<Integer> ids);
+
+    /**
+     * 微服务调用，获取id对应的product
+     * CommonResult<Product>指定product, 可以避免java将其序列化为map, 序列化为指定对象
+     * @param id productId
+     * @return
+     */
+    @GetMapping("/product/get")
+    public CommonResult<Product> getProductById(@RequestParam(name = "productId") Integer id);
 }

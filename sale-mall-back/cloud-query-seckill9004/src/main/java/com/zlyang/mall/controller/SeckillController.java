@@ -27,6 +27,12 @@ public class SeckillController {
         return CommonResult.success(seckillById);
     }
 
+    @GetMapping("/seckill/getDetail")
+    public CommonResult getSeckillDetailById(@RequestParam(name = "seckillId") Integer id){
+        SeckillProductDetail detail = seckillService.getSeckillDetailById(id);
+        return CommonResult.success(detail);
+    }
+
     @PostMapping("/seckill/create")
     public CommonResult createSeckill(@RequestBody Seckill seckill){
         int status = seckillService.createSeckill(seckill);

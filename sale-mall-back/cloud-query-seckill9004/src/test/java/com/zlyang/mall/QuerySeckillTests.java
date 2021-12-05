@@ -35,4 +35,10 @@ public class QuerySeckillTests {
         List<SeckillProductDetail> allSeckillsDetail = seckillService.getAllSeckillsDetail();
         allSeckillsDetail.forEach(System.out::println);
     }
+
+    @Test
+    void testGetSeckillDetail(){
+        SeckillProductDetail detail = seckillService.getSeckillDetailById(1);
+        System.out.println(detail);
+    }
 }

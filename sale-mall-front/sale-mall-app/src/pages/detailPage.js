@@ -1,10 +1,41 @@
 import React from 'react'
+import { useParams } from "react-router-dom";
+
 import TopNav from '../componets/topNav';
 import Footer from '../componets/footer';
 
 import '../css/detailPage.css'
+import axios from 'axios';
 
 export default function DetailPage(props) {
+
+    let params = useParams();
+
+    const [product, setProduct] = React.useState({
+        seckillId: params.seckillId,
+        productId: '',
+        title: '',
+        disc: '',
+        pic: '',
+        inventory: '',
+        price: '',
+        startTime: '',
+        endTime: '',
+    })
+
+    React.useEffect(() => {
+        let url = React.$getBackendUrl('/seckill/getDetail?seckillId=' + params.seckillId);
+        axios.get(url).then((response) => {
+            let responseBody = response.data;
+            if (responseBody.code === 0) {
+                setProduct(responseBody.data)
+            } else {
+                React.$logCommonError(responseBody);
+            }
+        }).catch((response) => {
+            React.$logRuntimeError(response)
+        })
+    }, [params])
 
     return (
         <div>
@@ -13,25 +44,25 @@ export default function DetailPage(props) {
                 <div className='width-restrictor'>
                     <div className='product-intro'>
                         <div className='preview'>
-                            <img src='./upload/goods-img-1.jpg' alt='' />
+                            <img src={React.$getStaticUrl(product.pic)} alt='' />
                         </div>
                         <div className='item-info'>
-                            <h2 className='product-title'>法国馥绿德雅（RENE FURTERER）固发白珠洗发露600ml（孙怡推荐 增发密发 强韧发根 洗发水 小白珠）</h2>
+                            <h2 className='product-title'>{product.title}</h2>
                             <ul>
                                 <li className='info-row'>
                                     <span className='info-name'>秒杀价</span>
                                     <span className='info-content price'>
                                         <em>￥</em>
-                                        318.00
+                                        {product.price}
                                     </span>
                                 </li>
                                 <li className='info-row'>
                                     <span className='info-name'>开始时间</span>
-                                    <span className='info-content'>2021-11-30 18:00:00</span>
+                                    <span className='info-content'>{product.startTime}</span>
                                 </li>
                                 <li className='info-row'>
                                     <span className='info-name'>结束时间</span>
-                                    <span className='info-content'>2021-11-30 19:00:00</span>
+                                    <span className='info-content'>{product.endTime}</span>
                                 </li>
                             </ul>
                             <div className='purchase'>
