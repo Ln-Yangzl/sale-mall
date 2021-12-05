@@ -22,7 +22,7 @@ public class SeckillController {
     private SeckillService seckillService;
 
     @GetMapping("/seckill/get")
-    public CommonResult getSeckillById(@RequestParam(name = "seckill_id") Integer id){
+    public CommonResult getSeckillById(@RequestParam(name = "seckillId") Integer id){
         Seckill seckillById = seckillService.getSeckillById(id);
         return CommonResult.success(seckillById);
     }
@@ -41,5 +41,15 @@ public class SeckillController {
     public CommonResult getAll(){
         List<SeckillProductDetail> allSeckillsDetail = seckillService.getAllSeckillsDetail();
         return CommonResult.success(allSeckillsDetail);
+    }
+
+    @GetMapping("/seckill/deleteById")
+    public CommonResult deleteSeckillById(@RequestParam(name = "seckillId") Integer seckillId){
+        int status = seckillService.deleteSeckillById(seckillId);
+        if(status > 0){
+            return CommonResult.success(null);
+        } else {
+            return CommonResult.error(ResultMsgEnum.DATABASE_OPERATION_FAILED);
+        }
     }
 }

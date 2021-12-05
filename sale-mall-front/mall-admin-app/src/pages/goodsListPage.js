@@ -78,6 +78,27 @@ export default function GoodsList(props) {
         })
     }, [])
 
+    const handleDelete = (index, productId, seckillId) => {
+        let url = React.$getBackendUrl("/product/deleteProductAndSeckill")
+        axios.get(url, {
+            params: {
+                productId: productId,
+                seckillId: seckillId,
+            }
+        }).then((response) => {
+            let responseBody = response.data;
+            if (responseBody.code === 0) {
+                let newData = data.concat();
+                newData.splice(index, 1);
+                setData(newData);
+            } else {
+                React.$logCommonError(responseBody);
+            }
+        }).catch((response) => {
+            React.$logRuntimeError(response)
+        })
+    }
+
     return (
         <div className='main-content'>
             <SideBar />
@@ -105,7 +126,7 @@ export default function GoodsList(props) {
                                         <th>{value.price}</th>
                                         <th>{value.inventory}</th>
                                         <th>
-                                            <button className='btn btn-danger'>删除</button>
+                                            <button className='btn btn-danger' onClick={() => handleDelete(index, value.productId, value.seckillId)}>删除</button>
                                             <button className='btn btn-default'>查看</button>
                                         </th>
                                     </tr>

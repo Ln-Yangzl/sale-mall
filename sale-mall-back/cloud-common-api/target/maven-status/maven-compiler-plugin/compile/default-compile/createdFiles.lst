@@ -5,3 +5,4 @@ com\zlyang\mall\entities\Product.class
 com\zlyang\mall\entities\ResultMsgEnum.class
 com\zlyang\mall\entities\Seckill.class
 com\zlyang\mall\entities\SeckillProductDetail.class
+com\zlyang\mall\entities\StatusEnum.class

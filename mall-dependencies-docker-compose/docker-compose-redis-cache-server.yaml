@@ -1,0 +1,21 @@
+version: "3"
+services:
+  redis-cache-server:
+    image: redis
+    container_name: redis-cache-server
+    ports:
+      - "6380:6379"
+    networks: 
+      mall_net:
+        ipv4_address: 172.18.0.11
+    restart: on-failure
+    volumes:
+      - ./redis-cache-server/conf/redis.conf:/etc/redis/redis.conf
+      - ./redis-cache-server/data:/data
+
+networks:
+  mall_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.18.0.0/16

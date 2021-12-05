@@ -74,4 +74,22 @@ public class ProductService {
         List<Product> products = productMapper.selectList(queryWrapper);
         return products;
     }
+
+    public int deleteProductById(Integer productId){
+        int status = productMapper.deleteById(productId);
+        if(status > 0){
+            return StatusEnum.SUCCESS.getCode();
+        } else {
+            return StatusEnum.DATABASE_OPERATION_FAILED.getCode();
+        }
+    }
+
+    public int deleteProductAndSeckillById(Integer productId, Integer seckillId){
+        int productDeleteStatus = deleteProductById(productId);
+        CommonResult seckillDeleteResult = seckillFeignService.deleteSeckillById(seckillId);
+        if(seckillDeleteResult.getCode() == ResultMsgEnum.SUCCESS.getCode() && productDeleteStatus == StatusEnum.SUCCESS.getCode()){
+            return StatusEnum.SUCCESS.getCode();
+        }
+        return StatusEnum.DATABASE_OPERATION_FAILED.getCode();
+    }
 }

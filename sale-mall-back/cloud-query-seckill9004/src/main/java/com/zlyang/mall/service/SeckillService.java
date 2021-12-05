@@ -36,6 +36,10 @@ public class SeckillService {
         return seckillMapper.insert(seckill);
     }
 
+    public int deleteSeckillById(Integer seckillId){
+        return seckillMapper.deleteById(seckillId);
+    }
+
     public List<SeckillProductDetail> getAllSeckillsDetail(){
         List<Seckill> seckills = seckillMapper.selectList(null);
         CommonResult<List<LinkedHashMap>> commonResult = productFeignService.selectInIds(

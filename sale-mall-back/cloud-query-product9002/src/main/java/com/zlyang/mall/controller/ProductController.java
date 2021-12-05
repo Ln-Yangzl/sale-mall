@@ -39,10 +39,20 @@ public class ProductController {
     }
 
     @PostMapping("/product/createProductAndSeckill")
-    public CommonResult createProduct(@RequestBody SeckillProductDetail seckillProductDetail){
+    public CommonResult createProductAndSeckill(@RequestBody SeckillProductDetail seckillProductDetail){
         System.out.println(seckillProductDetail);
         int status = productService.createProductAndSeckill(seckillProductDetail);
         if(status == 0){
+            return CommonResult.success(null);
+        } else {
+            return CommonResult.error(ResultMsgEnum.DATABASE_OPERATION_FAILED);
+        }
+    }
+
+    @GetMapping("/product/deleteProductAndSeckill")
+    public CommonResult deleteProductAndSeckill(@RequestParam Integer productId, @RequestParam Integer seckillId){
+        int status = productService.deleteProductAndSeckillById(productId, seckillId);
+        if(status == StatusEnum.SUCCESS.getCode()){
             return CommonResult.success(null);
         } else {
             return CommonResult.error(ResultMsgEnum.DATABASE_OPERATION_FAILED);
