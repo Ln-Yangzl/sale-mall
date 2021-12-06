@@ -16,8 +16,7 @@ public enum StatusEnum {
      */
     FAIL(0, "常规失败"),
     DATABASE_OPERATION_FAILED(-1, "数据库操作失败"),
-    AUTH_ERROR(502, "授权失败!"),
-    SERVER_BUSY(503, "服务器正忙，请稍后再试!");
+    DATABASE_KEY_NOT_FOUND(-2, "数据库对应key不存在");
 
     private int code;
     private String message;

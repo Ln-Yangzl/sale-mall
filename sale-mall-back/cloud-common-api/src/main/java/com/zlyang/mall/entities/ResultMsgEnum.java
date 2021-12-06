@@ -15,6 +15,7 @@ public enum ResultMsgEnum {
      */
     FAIL(1, "常规失败"),
     DATABASE_OPERATION_FAILED(2, "数据库操作失败"),
+    DATABASE_KEY_NOT_FOUND(3, "数据库中对应key不存在"),
     AUTH_ERROR(502, "授权失败!"),
     SERVER_BUSY(503, "服务器正忙，请稍后再试!");
 

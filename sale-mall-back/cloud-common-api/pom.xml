@@ -28,9 +28,11 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
+        <!--  使用annotation可避免公共模块需要配置数据源问题  -->
         <dependency>
             <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <artifactId>mybatis-plus-annotation</artifactId>
+            <version>3.2.0</version>
         </dependency>
     </dependencies>
 
