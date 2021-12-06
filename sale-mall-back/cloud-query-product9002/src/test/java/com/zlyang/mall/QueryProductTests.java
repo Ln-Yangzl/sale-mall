@@ -41,4 +41,10 @@ public class QueryProductTests {
             e.printStackTrace();
         }
     }
+
+    @Test
+    void nullPointerExceptionTest(){
+        Product productById = productService.getProductById(4);
+        System.out.println(productById);
+    }
 }

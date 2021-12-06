@@ -13,9 +13,11 @@ public enum ResultMsgEnum {
     /**
      * 失败
      */
-    FAIL(1, "常规失败"),
+    FAIL(1, "未知异常"),
     DATABASE_OPERATION_FAILED(2, "数据库操作失败"),
     DATABASE_KEY_NOT_FOUND(3, "数据库中对应key不存在"),
+    NULL_POINTER_EXCEPTION(4, "检查传入参数是否在数据库中存在"),
+    SERVICE_CALL_FAIL(5, "微服务调用异常"),
     AUTH_ERROR(502, "授权失败!"),
     SERVER_BUSY(503, "服务器正忙，请稍后再试!");
 
