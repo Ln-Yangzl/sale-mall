@@ -1,6 +1,9 @@
 package com.zlyang.mall;
 
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.zlyang.mall.entities.Product;
+import com.zlyang.mall.mapper.ProductMapper;
 import com.zlyang.mall.service.ProductService;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,6 +23,9 @@ public class QueryProductTests {
 
     @Resource
     private ProductService productService;
+
+    @Resource
+    private ProductMapper productMapper;
 
     @Test
     void testSelectInIds(){
@@ -43,8 +49,20 @@ public class QueryProductTests {
     }
 
     @Test
-    void nullPointerExceptionTest(){
-        Product productById = productService.getProductById(4);
-        System.out.println(productById);
+    void insertExceptionTest(){
+        Product product = new Product();
+        product.setProductId(3);
+        product.setTitle("重复主键插入");
+        int insert = productMapper.insert(product);
+        System.out.println(insert);
+    }
+
+    @Test
+    void updateTest(){
+        UpdateWrapper<Product> updateWrapper = Wrappers.update();
+        updateWrapper.eq("product_id", 4);
+        updateWrapper.set("disc","test*********");
+        int update = productMapper.update(null, updateWrapper);
+        System.out.println(update);
     }
 }

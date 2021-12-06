@@ -24,7 +24,7 @@ public class CloudGlobalExceptionHandler {
 
     @ExceptionHandler(ServiceException.class)
     public CommonResult serviceExceptionHandler(ServiceException e){
-        log.error("ServiceException:", e);
+        log.error("ServiceException:" + e.getMessage(), e);
         return CommonResult.error(e.getCode(), e.getMessage());
     }
 

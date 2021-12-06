@@ -29,18 +29,16 @@ public class ProductController {
 
     @PostMapping("/product/savePic")
     public CommonResult savePic(@RequestBody MultipartFile picFile){
-        System.out.println(picFile);
         int i = productService.saveFile(picFile);
-        if(i == 0){
+        if(i == StatusEnum.SUCCESS.getCode()){
             return CommonResult.success(null);
         } else {
-            return CommonResult.error(ResultMsgEnum.FAIL);
+            return CommonResult.error(ResultMsgEnum.FAIL.getCode(), "图片保存失败");
         }
     }
 
     @PostMapping("/product/createProductAndSeckill")
     public CommonResult createProductAndSeckill(@RequestBody SeckillProductDetail seckillProductDetail){
-        System.out.println(seckillProductDetail);
         int status = productService.createProductAndSeckill(seckillProductDetail);
         if(status == 0){
             return CommonResult.success(null);

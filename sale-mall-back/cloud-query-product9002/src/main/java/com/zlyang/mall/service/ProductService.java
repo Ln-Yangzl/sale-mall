@@ -37,11 +37,11 @@ public class ProductService {
     }
 
     public int createProductAndSeckill(SeckillProductDetail seckillProductDetail){
+        // TODO:开启全局事物支持
         Product product = new Product(seckillProductDetail);
         Seckill seckill = new Seckill(seckillProductDetail);
         int productStatus = createProduct(product);
         seckill.setProductId(product.getProductId());
-        System.out.println(product.getProductId());
         CommonResult commonResult = seckillFeignService.createSeckill(seckill);
         int status = 0;
         if(productStatus <= 0 || commonResult.getCode() != ResultMsgEnum.SUCCESS.getCode()){
@@ -58,14 +58,13 @@ public class ProductService {
     public int saveFile(MultipartFile file){
         String fileName = FILE_PATH + file.getOriginalFilename();
         File dest = new File(fileName);
-        int status = 0;
         try {
             file.transferTo(dest);
         } catch (IOException e) {
             e.printStackTrace();
-            status = 1;
+            return StatusEnum.FAIL.getCode();
         }
-        return status;
+        return StatusEnum.SUCCESS.getCode();
     }
 
     public List<Product> getProductsInIds(List<Integer> ids){

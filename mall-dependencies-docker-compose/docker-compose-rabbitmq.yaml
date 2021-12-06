@@ -1,0 +1,21 @@
+version: "3"
+services:
+  seckill-rabbitmq:
+    image: rabbitmq:${RABBITMQ_VERSION}
+    container_name: seckill-rabbitmq
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    env_file:
+      - ./env/rabbitmq.env
+    networks: 
+      mall_net:
+        ipv4_address: 172.18.0.12
+    restart: on-failure
+
+networks:
+  mall_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.18.0.0/16
