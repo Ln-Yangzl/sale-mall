@@ -24,4 +24,5 @@ public class SeckillOrder implements Serializable {
     private Integer productId;
     private Integer userId;
     private Integer amount;
+    private String serial;
 }

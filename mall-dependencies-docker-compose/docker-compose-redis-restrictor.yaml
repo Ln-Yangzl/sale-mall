@@ -1,0 +1,21 @@
+version: "3"
+services:
+  redis-restrictor:
+    image: redis
+    container_name: redis-restrictor
+    ports:
+      - "6381:6379"
+    networks: 
+      mall_net:
+        ipv4_address: 172.18.0.13
+    restart: on-failure
+    volumes:
+      - ./redis-restrictor/conf/redis.conf:/etc/redis/redis.conf
+      - ./redis-restrictor/data:/data
+
+networks:
+  mall_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.18.0.0/16

@@ -26,12 +26,20 @@ public class SeckillCreaterService {
     @Resource
     private OrderFeignService orderFeignService;
 
+    @Resource
+    private FullMsgSendService fullMsgSendService;
+
     public int createSeckill(int seckillId, int userId, int amount){
+        // 如果已经在消息队列中发送过已满消息，则不再向数据库查询，直接返回
+        if(fullMsgSendService.isFull(seckillId)){
+            return ResultMsgEnum.FAIL.getCode();
+        }
         Seckill seckill = seckillMapper.selectById(seckillId);
         int seckillInventory = seckill.getSeckillInventory();
         int productId = seckill.getProductId();
-        // TODO:添加快速失败
+        // 库存已空，发送已满消息给maker/restrictor，不再允许用户进入，maker/restrictor快速返回
         if(seckillInventory == 0){
+            fullMsgSendService.sendFullMsg(seckillId);
             return ResultMsgEnum.FAIL.getCode();
         } else if(seckillInventory < amount){
             return ResultMsgEnum.FAIL.getCode();

@@ -30,6 +30,10 @@ spring:
           uri: lb://query-order
           predicates:
             - Path=/order/**
+        - id: create_rouoter
+          uri: lb://seckill-restrictor
+          predicates:
+            - Path=/create/**
 #        - id: payment_routh #payment_route    #路由的ID，没有固定规则但要求唯一，建议配合服务名
 #          #          uri: http://localhost:8001          #匹配后提供服务的路由地址
 #          uri: lb://cloud-payment-service #匹配后提供服务的路由地址
