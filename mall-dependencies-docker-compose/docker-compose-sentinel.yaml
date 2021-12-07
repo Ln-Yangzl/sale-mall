@@ -1,8 +1,8 @@
 version: "3" 
 services:
-  sentinel:
+  mall-sentinel:
     image: bladex/sentinel-dashboard:${SENTINEL_VERSION}
-    container_name: sentinel
+    container_name: mall-sentinel
     ports:
       - "8858:8858"
     restart: on-failure

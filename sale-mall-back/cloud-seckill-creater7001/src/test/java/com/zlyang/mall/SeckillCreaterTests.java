@@ -19,7 +19,7 @@ public class SeckillCreaterTests {
 
     @Test
     void sendFullMsgTest(){
-        int i = fullMsgSendService.sendFullMsg(2);
+        int i = fullMsgSendService.sendFullMsg(4);
         System.out.println(i);
     }
 }

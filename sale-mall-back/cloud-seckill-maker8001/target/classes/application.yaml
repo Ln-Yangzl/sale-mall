@@ -13,7 +13,18 @@ spring:
     nacos:
       discovery:
         server-addr: localhost:6448
-
+    sentinel:
+      transport:
+        dashboard: localhost:8858 #配置Sentinel dashboard地址
+        port: 8719
+      datasource: #<---------------------------关注点，添加Nacos数据源配置
+        ds1:
+          nacos:
+            server-addr: localhost:8848
+            dataId: cloudalibaba-sentinel-service
+            groupId: DEFAULT_GROUP
+            data-type: json
+            rule-type: flow
     stream:
       binders: # 在此处配置要绑定的rabbitmq的服务信息；
         defaultRabbit: # 表示定义的名称，用于于binding整合

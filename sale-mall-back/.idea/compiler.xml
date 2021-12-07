@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="cloud-query-order9003" />
+        <module name="cloud-seckill-maker8002" />
         <module name="cloud-query-seckill9004" />
         <module name="cloud-common-api" />
         <module name="cloud-seckill-creater7001" />

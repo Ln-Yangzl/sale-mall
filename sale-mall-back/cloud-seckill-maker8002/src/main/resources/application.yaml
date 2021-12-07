@@ -1,5 +1,5 @@
 server:
-  port: 8001
+  port: 8002
 
 spring:
   application:
@@ -7,7 +7,7 @@ spring:
   redis:
     host: localhost
     password: 123456
-    database: 1
+    database: 2
     port: 6381
   cloud:
     nacos:

@@ -16,6 +16,7 @@
         <module>cloud-gateway9527</module>
         <module>cloud-seckill-creater7001</module>
         <module>cloud-seckill-maker8001</module>
+        <module>cloud-seckill-maker8002</module>
     </modules>
     <packaging>pom</packaging>
 

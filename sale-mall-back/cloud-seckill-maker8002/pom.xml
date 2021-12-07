@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>cloud-seckill-maker8001</artifactId>
+    <artifactId>cloud-seckill-maker8002</artifactId>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
