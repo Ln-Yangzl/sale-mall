@@ -9,6 +9,11 @@ spring:
     password: 123456
     database: 1
     port: 6381
+  redis-global-lock:
+    host: localhost
+    password: 123456
+    database: 0
+    port: 6381
   cloud:
     nacos:
       discovery:
