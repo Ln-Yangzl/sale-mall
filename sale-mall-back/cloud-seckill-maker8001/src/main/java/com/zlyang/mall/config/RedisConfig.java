@@ -26,7 +26,6 @@ import java.util.Set;
  * @description:
  */
 @Configuration
-@EnableCaching
 public class RedisConfig {
 
     /**

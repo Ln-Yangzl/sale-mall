@@ -47,6 +47,6 @@ public class ReceiveMsgController {
         }
         long diff = (end.getTime() - System.currentTimeMillis())/1000;
         log.info("Time expire:" + diff);
-        valueOperations.set(payload.get("seckillId") + "count", payload.get("amount"), diff, TimeUnit.SECONDS);
+        valueOperations.set(payload.get("seckillId") + "count", Integer.parseInt(payload.get("amount")), diff, TimeUnit.SECONDS);
     }
 }

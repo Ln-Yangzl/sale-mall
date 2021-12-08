@@ -50,7 +50,7 @@ public class QuerySeckillTests {
 
     @Test
     void testSendCreateSeckillMsg(){
-        ResultMsgEnum resultMsgEnum = seckillMessageService.sendSeckillRestrictionMsg(10, 100, "2022-12-8 14:30:00");
+        ResultMsgEnum resultMsgEnum = seckillMessageService.sendSeckillRestrictionMsg(10, 0, "2021-12-8 15:30:00");
         System.out.println(resultMsgEnum.getMessage());
     }
 }

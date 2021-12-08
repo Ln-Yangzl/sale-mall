@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.messaging.Source;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.integration.support.MessageBuilder;
 import org.springframework.messaging.MessageChannel;
 
@@ -26,9 +27,16 @@ public class SeckillRestrictorService {
     @Resource
     private RedisTemplate<String, Object> redisTemplate;
 
+    @Resource
+    private ValueOperations<String, Object> valueOperations;
+
     public ResultMsgEnum sendSeckillMessage(Integer seckillId, Integer userId, Integer amount){
         if(redisTemplate.hasKey(seckillId.toString() + "lock")){
             log.info("Blocked by redis for: " + seckillId);
+            return ResultMsgEnum.SECKILL_FULL;
+        }
+        if(valueOperations.decrement(seckillId.toString() + "count") < 0){
+            log.info("Blocked by redis for count: " + seckillId);
             return ResultMsgEnum.SECKILL_FULL;
         }
         HashMap<String, Integer> args = new HashMap<>(3);
@@ -43,11 +51,6 @@ public class SeckillRestrictorService {
             return ResultMsgEnum.FAIL;
         }
 
-    }
-
-    public int sendString(){
-        output.send(MessageBuilder.withPayload("测试").build());
-        return 0;
     }
 
 }

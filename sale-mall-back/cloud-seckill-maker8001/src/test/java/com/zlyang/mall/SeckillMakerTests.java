@@ -20,15 +20,18 @@ public class SeckillMakerTests {
     @Resource
     private ValueOperations<String, Object> valueOperations;
 
-    @Test
-    void testSend(){
-        seckillRestrictorService.sendString();
-    }
+    @Resource
+    private ValueOperations<String, Object> globalLockValueOperations;
 
     @Test
     void testRedis(){
         valueOperations.set("test","testKey");
         Object test = valueOperations.get("test");
         System.out.println(test);
+    }
+
+    @Test
+    void testRedisGlobalLock(){
+        globalLockValueOperations.set("lock1", "locked");
     }
 }

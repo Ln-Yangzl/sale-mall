@@ -67,8 +67,9 @@ export default function GoodsAdd(props) {
                     ...errorMsg,
                     picErrorMsg: responseBody.message,
                 })
-            } else {
                 React.$logCommonError(responseBody);
+            } else {
+                
             }
         }).catch((response) => {
             React.$logRuntimeError(response)
@@ -85,8 +86,9 @@ export default function GoodsAdd(props) {
                     ...errorMsg,
                     picErrorMsg: responseBody.message,
                 })
-            } else {
                 React.$logCommonError(responseBody);
+            } else {
+                
             }
         }).catch((response) => {
             React.$logRuntimeError(response)

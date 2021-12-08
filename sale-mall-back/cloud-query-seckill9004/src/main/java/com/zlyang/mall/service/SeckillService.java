@@ -53,12 +53,13 @@ public class SeckillService {
 
     @CacheEvict(value = "long-cache", key = "'getAllSeckillsDetail'")
     public int createSeckill(Seckill seckill){
+        int insert = seckillMapper.insert(seckill);
         seckillMessageService.sendSeckillRestrictionMsg(
                 seckill.getSeckillId(),
                 seckill.getSeckillInventory(),
                 seckill.getEndTime()
         );
-        return seckillMapper.insert(seckill);
+        return insert;
     }
 
     @CacheEvict(value = "long-cache", key = "'getAllSeckillsDetail'")
