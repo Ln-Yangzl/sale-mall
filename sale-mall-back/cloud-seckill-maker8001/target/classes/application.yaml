@@ -20,7 +20,7 @@ spring:
       datasource: #<---------------------------关注点，添加Nacos数据源配置
         ds1:
           nacos:
-            server-addr: localhost:8848
+            server-addr: localhost:6448
             dataId: cloudalibaba-sentinel-service
             groupId: DEFAULT_GROUP
             data-type: json
