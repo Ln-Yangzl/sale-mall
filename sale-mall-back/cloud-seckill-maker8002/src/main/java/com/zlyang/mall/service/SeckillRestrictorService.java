@@ -27,7 +27,7 @@ public class SeckillRestrictorService {
     private RedisTemplate<String, Object> redisTemplate;
 
     public ResultMsgEnum sendSeckillMessage(Integer seckillId, Integer userId, Integer amount){
-        if(redisTemplate.hasKey(seckillId.toString())){
+        if(redisTemplate.hasKey(seckillId.toString() + "lock")){
             log.info("Blocked by redis for: " + seckillId);
             return ResultMsgEnum.SECKILL_FULL;
         }

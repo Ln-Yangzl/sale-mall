@@ -28,6 +28,9 @@ public class SeckillService {
     @Resource
     private ProductFeignService productFeignService;
 
+    @Resource
+    private SeckillMessageService seckillMessageService;
+
     @Cacheable(value = "short-cache", key = "'getSeckillById'+#id", unless = "#result == null")
     public Seckill getSeckillById(Integer id){
         return seckillMapper.selectById(id);
@@ -50,6 +53,11 @@ public class SeckillService {
 
     @CacheEvict(value = "long-cache", key = "'getAllSeckillsDetail'")
     public int createSeckill(Seckill seckill){
+        seckillMessageService.sendSeckillRestrictionMsg(
+                seckill.getSeckillId(),
+                seckill.getSeckillInventory(),
+                seckill.getEndTime()
+        );
         return seckillMapper.insert(seckill);
     }
 

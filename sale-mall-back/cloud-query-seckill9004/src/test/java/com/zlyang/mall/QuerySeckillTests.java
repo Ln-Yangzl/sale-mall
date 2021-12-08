@@ -1,13 +1,16 @@
 package com.zlyang.mall;
 
+import com.zlyang.mall.entities.ResultMsgEnum;
 import com.zlyang.mall.entities.Seckill;
 import com.zlyang.mall.entities.SeckillProductDetail;
 import com.zlyang.mall.mapper.SeckillMapper;
+import com.zlyang.mall.service.SeckillMessageService;
 import com.zlyang.mall.service.SeckillService;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -23,6 +26,9 @@ public class QuerySeckillTests {
 
     @Resource
     SeckillService seckillService;
+
+    @Resource
+    SeckillMessageService seckillMessageService;
 
     @Test
     void testSelectList(){
@@ -40,5 +46,11 @@ public class QuerySeckillTests {
     void testGetSeckillDetail(){
         SeckillProductDetail detail = seckillService.getSeckillDetailById(1);
         System.out.println(detail);
+    }
+
+    @Test
+    void testSendCreateSeckillMsg(){
+        ResultMsgEnum resultMsgEnum = seckillMessageService.sendSeckillRestrictionMsg(10, 100, "2022-12-8 14:30:00");
+        System.out.println(resultMsgEnum.getMessage());
     }
 }
