@@ -17,7 +17,7 @@ transport.shutdown.wait=3
 #service.vgroup_mapping.my_test_tx_group=default
 ## 1.0之后需要换成  vgroupMapping
 ## 可以写多个配置，只需要相关联的group统一就行
-service.vgroupMapping.seata_test_group=default
+service.vgroupMapping.seata_seckill_group=default
 
 service.default.grouplist=127.0.0.1:8091
 service.enableDegrade=false
@@ -55,7 +55,7 @@ store.db.dbType=mysql
 #配置数据库相关信息
 ##store.db.driverClassName=com.mysql.cj.jdbc.Driver
 store.db.driverClassName=com.mysql.jdbc.Driver
-store.db.url=jdbc:mysql://192.168.99.100:3306/seata?useUnicode=true
+store.db.url=jdbc:mysql://172.18.0.2:3306/seata?useUnicode=true
 store.db.user=root
 store.db.password=root
 icKeyRetrieval=true

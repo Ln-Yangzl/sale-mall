@@ -1,7 +1,7 @@
 version: '3'
 services:
-  seata-server:
-    container_name: "seata-server"
+  seata-seckill-server:
+    container_name: "seata-seckill-server"
     image: seataio/seata-server:${SEATA_VERSION}
     environment:
      - SEATA_CONFIG_NAME=file:/root/seata-config/registry

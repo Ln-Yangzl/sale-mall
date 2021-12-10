@@ -35,6 +35,37 @@ spring:
     username: root
     password: 123456
 
+seata:
+  enabled: true # 1.0新特性，需要依赖seata-spring-boot-starter 默认为true
+  enable-auto-data-source-proxy: true  # 牵扯到回滚
+  tx-service-group: seata_seckill_group  # 需要与config.txt中的 service.vgroupMapping.seata_test_group=default保持一致
+  server:
+    vgroup-mapping:
+      seata_seckill_group: default # 需要与config.txt中的 service.vgroupMapping.seata_test_group=default 保持一致
+    #grouplist:
+    #  default: 127.0.0.1:8091
+  service:
+    disable-global-transaction: false   # 默认为false，可不配
+  registry:  ## 注册中心
+    type: nacos #注册nacos
+    nacos:
+      application: seata-server  #nacos中seata-server启动注册成功后的服务名称
+      server-addr: localhost:6448
+      username: nacos
+      password: nacos
+  config: ## 配置中心  与register.conf文件中的保持一致
+    type: nacos
+    nacos:
+      server-addr: localhost:6448
+      application: SEATA_GROUP  #与register.conf文件中的保持一致, 该已项被取消
+      username: nacos
+      password: nacos
+      namespace: 896ec496-9baa-4e63-bb8a-bfe059b4c8b4 #默认public，此处是创建的seata工作区间
+      group: SEATA_GROUP #与register.conf文件中的保持一致
+
+  client:
+    rm:
+      report-success-enable: false
 
 management:
   endpoints:
