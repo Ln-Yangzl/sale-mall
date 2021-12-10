@@ -11,6 +11,7 @@ import org.springframework.messaging.MessageChannel;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author: zlyang
@@ -21,6 +22,8 @@ import java.util.HashMap;
 @EnableBinding(Source.class)
 public class SeckillRestrictorService {
 
+    private static final int USER_LOCK_SECONDS = 10;
+
     @Resource
     private MessageChannel output;
 
@@ -30,9 +33,16 @@ public class SeckillRestrictorService {
     @Resource
     private ValueOperations<String, Object> valueOperations;
 
+    @Resource
+    private ValueOperations<String, Object> globalLockValueOperations;
+
     public ResultMsgEnum sendSeckillMessage(Integer seckillId, Integer userId, Integer amount){
+        if(!globalLockValueOperations.setIfAbsent(userId.toString(), "lock", USER_LOCK_SECONDS, TimeUnit.SECONDS)){
+            log.info("Blocked by redis global lock for user: " + userId);
+            return ResultMsgEnum.ACCESS_VIOLATION;
+        }
         if(redisTemplate.hasKey(seckillId.toString() + "lock")){
-            log.info("Blocked by redis for: " + seckillId);
+            log.info("Blocked by redis for lock: " + seckillId);
             return ResultMsgEnum.SECKILL_FULL;
         }
         if(valueOperations.decrement(seckillId.toString() + "count") < 0){

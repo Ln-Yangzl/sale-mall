@@ -18,7 +18,8 @@ public enum ResultMsgEnum {
     DATABASE_KEY_NOT_FOUND(3, "数据库中对应key不存在"),
     NULL_POINTER_EXCEPTION(4, "检查传入参数是否在数据库中存在"),
     SERVICE_CALL_FAIL(5, "微服务调用异常"),
-    SECKILL_FULL(-1, "目标秒杀已无余量");
+    SECKILL_FULL(-1, "目标秒杀已无余量"),
+    ACCESS_VIOLATION(-2, "非法访问");
 
     private final int code;
     private final String message;
