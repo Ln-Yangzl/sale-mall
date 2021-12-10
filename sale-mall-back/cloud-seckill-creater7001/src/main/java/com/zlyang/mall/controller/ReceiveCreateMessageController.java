@@ -25,10 +25,14 @@ public class ReceiveCreateMessageController {
     private SeckillCreaterService seckillCreaterService;
 
     @StreamListener(Sink.INPUT)
-    public void input(Message<Map<String, Integer>> message)
+    public void input(Message<Map<String, String>> message)
     {
-        Map<String, Integer> payload = message.getPayload();
+        Map<String, String> payload = message.getPayload();
         log.info("receive kill:" + payload.toString());
-        seckillCreaterService.createSeckill(payload.get("seckillId"), payload.get("userId"), payload.get("amount"));
+        seckillCreaterService.createSeckill(
+                Integer.parseInt(payload.get("seckillId")),
+                Integer.parseInt(payload.get("userId")),
+                Integer.parseInt(payload.get("amount")),
+                payload.get("serial"));
     }
 }

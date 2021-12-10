@@ -27,6 +27,7 @@ CREATE TABLE `order` (
   `product_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `amount` int(11) NOT NULL DEFAULT '1',
+  `serial` varchar(40) NOT NULL COMMENT '前端生成的临时流水号',
   PRIMARY KEY (`order_id`),
   UNIQUE KEY `order_order_id_uindex` (`order_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='订单表';

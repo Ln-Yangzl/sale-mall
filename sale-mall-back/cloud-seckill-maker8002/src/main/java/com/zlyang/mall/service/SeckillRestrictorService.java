@@ -36,7 +36,7 @@ public class SeckillRestrictorService {
     @Resource
     private ValueOperations<String, Object> globalLockValueOperations;
 
-    public ResultMsgEnum sendSeckillMessage(Integer seckillId, Integer userId, Integer amount){
+    public ResultMsgEnum sendSeckillMessage(Integer seckillId, Integer userId, Integer amount, String serial){
         if(!globalLockValueOperations.setIfAbsent(userId.toString(), "lock", USER_LOCK_SECONDS, TimeUnit.SECONDS)){
             log.info("Blocked by redis global lock for user: " + userId);
             return ResultMsgEnum.ACCESS_VIOLATION;
@@ -49,11 +49,12 @@ public class SeckillRestrictorService {
             log.info("Blocked by redis for count: " + seckillId);
             return ResultMsgEnum.SECKILL_FULL;
         }
-        HashMap<String, Integer> args = new HashMap<>(3);
-        args.put("seckillId", seckillId);
-        args.put("userId", userId);
-        args.put("amount", amount);
-        log.info("message send: " + seckillId + " " + userId + " " + amount);
+        HashMap<String, String> args = new HashMap<>(3);
+        args.put("seckillId", seckillId.toString());
+        args.put("userId", userId.toString());
+        args.put("amount", amount.toString());
+        args.put("serial", serial);
+        log.info("message send: " + seckillId + " " + userId + " " + amount + " " + serial);
         boolean send = output.send(MessageBuilder.withPayload(args).build());
         if(send){
             return ResultMsgEnum.SUCCESS;

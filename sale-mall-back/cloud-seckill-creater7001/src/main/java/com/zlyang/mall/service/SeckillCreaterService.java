@@ -31,7 +31,7 @@ public class SeckillCreaterService {
     private FullMsgSendService fullMsgSendService;
 
     @GlobalTransactional(name = "create_seckill", rollbackFor = Exception.class)
-    public int createSeckill(int seckillId, int userId, int amount){
+    public int createSeckill(int seckillId, int userId, int amount, String serial){
         // 如果已经在消息队列中发送过已满消息，则不再向数据库查询，直接返回
         if(fullMsgSendService.isFull(seckillId)){
             return ResultMsgEnum.FAIL.getCode();
@@ -51,6 +51,7 @@ public class SeckillCreaterService {
         seckillOrder.setProductId(productId);
         seckillOrder.setUserId(userId);
         seckillOrder.setAmount(amount);
+        seckillOrder.setSerial(serial);
         CommonResult orderResult = orderFeignService.createOrder(seckillOrder);
         if(orderResult.getCode()!= ResultMsgEnum.SUCCESS.getCode()){
             // TODO:全局回滚
