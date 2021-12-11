@@ -57,4 +57,10 @@
 
 .product-intro .purchase .purchase-btn{
     height: 5rem;
+    cursor: pointer;
+}
+
+.product-intro .purchase .wait-btn{
+    height: 5rem;
+    cursor: not-allowed;
 }

@@ -1,5 +1,7 @@
 package com.zlyang.mall.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.zlyang.mall.entities.SeckillOrder;
 import com.zlyang.mall.mapper.OrderMapper;
 import org.springframework.stereotype.Service;
@@ -23,5 +25,13 @@ public class OrderService {
 
     public int createOrder(SeckillOrder seckillOrder){
         return orderMapper.insert(seckillOrder);
+    }
+
+    public int getOrderBySerial(String serial){
+        QueryWrapper<SeckillOrder> query = Wrappers.query();
+        query.select("order_id");
+        query.eq("serial", serial);
+        SeckillOrder seckillOrder = orderMapper.selectOne(query);
+        return seckillOrder.getOrderId();
     }
 }

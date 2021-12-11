@@ -30,8 +30,8 @@ React.$getBackendUrl = (url) => React.$backendHeader + url
  * @param  responseBody the response body get
  */
  React.$logCommonError = (responseBody) => {
-    console.log('error code:' + responseBody.status);
-    console.log('error info: ' + responseBody.error);
+    console.log('error code:' + responseBody.code);
+    console.log('error info: ' + responseBody.message);
 }
 
 /**

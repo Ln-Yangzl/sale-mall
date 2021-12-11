@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route} from 'react-router-dom';
 
 import SalePage from './pages/salePage';
 import DetailPage from './pages/detailPage';
+import ResultPage from './pages/resultPage';
 
 import './utils/tools'
 import './css/base.css'
@@ -16,7 +17,9 @@ function App() {
 
         <Route path='/' element={<SalePage />} />
         
-        <Route path='/detail/:seckillId' element={<DetailPage/>} />
+        <Route path='/detail/:seckillId' element={<DetailPage />} />
+        
+        <Route path='/result/:serial' element={<ResultPage />} />
 
       </Routes>
     </BrowserRouter>

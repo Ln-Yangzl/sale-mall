@@ -25,6 +25,12 @@ public class OrderController {
         return CommonResult.success(seckillOrder);
     }
 
+    @GetMapping("/order/getBySerial")
+    public CommonResult getOrderBySerial(@RequestParam(value = "serial") String serial){
+        int orderId = orderService.getOrderBySerial(serial);
+        return CommonResult.success(orderId);
+    }
+
     @PostMapping("/order/create")
     public CommonResult createOrder(@RequestBody SeckillOrder seckillOrder){
         int status = orderService.createOrder(seckillOrder);

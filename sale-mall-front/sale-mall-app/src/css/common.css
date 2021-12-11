@@ -36,6 +36,17 @@
     text-align: center;
 }
 
+.btn-black{
+    height: 5rem;
+    padding: 0 2.6rem;
+    line-height: 5rem;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #fff;
+    background-color: #333333;
+    text-align: center;
+}
+
 /*---------------------------------
             header
 ----------------------------------*/
