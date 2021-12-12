@@ -52,6 +52,7 @@ export default function DetailPage(props) {
                     }, 1000);
                 }
                 if (getTimeDiff(getCurrentTime(), responseBody.data.endTime) < 0) {
+                    setAccessible(false);
                     setOver(true);
                 }
             } else {
@@ -75,9 +76,8 @@ export default function DetailPage(props) {
             return;
         }
         let serial = nanoid(16);
-        let url = React.$getBackendUrl('/create/seckill');
+        let url = React.$getBackendUrl('/create/seckill/' + params.seckillId);
         let payload = new FormData();
-        payload.append('seckillId', params.seckillId);
         payload.append('userId', '1');
         payload.append('amount', '1');
         payload.append('serial', serial);

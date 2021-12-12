@@ -8,7 +8,7 @@ spring:
         ds1:
           nacos:
             server-addr: localhost:6448
-            dataId: cloudalibaba-sentinel-service
+            dataId: ${spring.application.name}-sentinel
             groupId: DEFAULT_GROUP
             data-type: json
             rule-type: flow

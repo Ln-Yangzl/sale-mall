@@ -36,7 +36,7 @@ public class SeckillService {
         return seckillMapper.selectById(id);
     }
 
-    @Cacheable(value = "short-cache", key = "'getSeckillDetailById'+#id", unless = "#result == null")
+    @Cacheable(value = "short-cache", key = "'getSeckillDetailById'+#seckillId", unless = "#result == null")
     public SeckillProductDetail getSeckillDetailById(Integer seckillId){
         Seckill seckill = getSeckillById(seckillId);
         CommonResult result = productFeignService.getProductById(seckill.getProductId());
