@@ -16,7 +16,7 @@ import java.util.Date;
  * @date: 2021-11-22 9:41
  * @description:
  */
-@Component
+//@Component
 @Slf4j
 public class MyLogGateWayFilter implements GlobalFilter, Ordered {
     @Override
