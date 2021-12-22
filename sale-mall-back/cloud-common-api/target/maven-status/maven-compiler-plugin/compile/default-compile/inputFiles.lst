@@ -1,6 +1,7 @@
 D:\coding\sale-mall\sale-mall-back\cloud-common-api\src\main\java\com\zlyang\mall\entities\Seckill.java
 D:\coding\sale-mall\sale-mall-back\cloud-common-api\src\main\java\com\zlyang\mall\entities\SeckillOrder.java
 D:\coding\sale-mall\sale-mall-back\cloud-common-api\src\main\java\com\zlyang\mall\entities\User.java
+D:\coding\sale-mall\sale-mall-back\cloud-common-api\src\main\java\com\zlyang\mall\exception\ServiceException.java
 D:\coding\sale-mall\sale-mall-back\cloud-common-api\src\main\java\com\zlyang\mall\entities\CommonResult.java
 D:\coding\sale-mall\sale-mall-back\cloud-common-api\src\main\java\com\zlyang\mall\entities\StatusEnum.java
 D:\coding\sale-mall\sale-mall-back\cloud-common-api\src\main\java\com\zlyang\mall\entities\Product.java
